@@ -18,13 +18,13 @@ const Header: React.FC = () => {
           </div>
 
           {/* Título central */}
-          <div className="flex-1 flex justify-center ml-30">
-            <h1 className="text-white font-bold text-5xl text-center ">
+          <div className="flex-1 flex justify-center items-center ml-30">
+            <h1 className="text-white font-bold text-3xl sm:text-4xl md:text-5xl text-center">
               Coquito´s Cañitas
             </h1>
           </div>
 
-          {/* Íconos derecha */}
+          {/* Íconos derecha para escritorio/tablet */}
           <div className="hidden md:flex items-center space-x-4">
             <SocialIcons />
             <Carrito />
@@ -35,10 +35,17 @@ const Header: React.FC = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-[#89bf47]"
+              aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+        </div>
+
+        {/* Redes + carrito para smartphone debajo del h1 */}
+        <div className="flex items-center justify-center space-x-6 mt-2 md:hidden">
+          <SocialIcons />
+          <Carrito onlyIcon={true} />
         </div>
 
         {/* Nav Desktop debajo del título */}
@@ -49,12 +56,8 @@ const Header: React.FC = () => {
         {/* Nav Mobile desplegable */}
         {isOpen && (
           <div className="md:hidden bg-[#EFEDE3] px-4 pb-4 mt-2 rounded-md">
-            <nav className="flex flex-col space-y-3 items-start">
+            <nav className="grid grid-cols-1 gap-4">
               <Nav />
-              <div className="flex items-center space-x-4 mt-2">
-                <SocialIcons />
-                <Carrito />
-              </div>
             </nav>
           </div>
         )}
